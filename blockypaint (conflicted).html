@@ -1,0 +1,45 @@
+<script src="lib/p5.min.js"></script>
+
+<script>
+
+
+const blockSize = 25;
+const hLines = 16;
+const vLines = 30;
+const fillColor = 'black';
+
+function setup() {
+
+    let hSize = hLines * blockSize;
+    let vSize = vLines * blockSize;
+    
+    createCanvas(hSize, vSize);
+    background('yellow');
+
+    for (let i = 0; i <= hLines; i++) {
+        line(i * blockSize, 0, i * blockSize, vSize);
+    }
+
+    for(let h = 0; h <= vLines; h++) {
+        line(0, h * blockSize, hSize, h * blockSize);
+    }
+
+}
+
+function draw() {
+    if (mouseIsPressed) {
+        fill(fillColor);
+
+        let x = Math.floor(mouseX / blockSize);
+        let y = Math.floor(mouseY / blockSize);
+
+        rect(x * blockSize, y * blockSize, blockSize);
+    } 
+}
+
+function mouseClicked() {
+   
+
+}
+
+</script>

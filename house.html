@@ -1,0 +1,59 @@
+<script src="lib/p5.min.js"></script>
+
+<script>
+function setup () {
+
+    // Make the canvas for drawing
+    createCanvas(600,600);
+    background('blue');
+
+    // The middle of the house
+    rect(200,200,200,200);
+
+    // The chimney
+    rect(350,200,25,-100);
+
+    // The roof
+    triangle(200,200,400,200,300,100);
+
+    // The door
+    rect(275, 330, 50, 70);
+
+    // The door knob
+    strokeWeight(5);
+    point(320, 365);
+    strokeWeight(1);
+
+    // The two windows
+    draw_window(240, 240, 35);
+    draw_window(325, 240, 35);
+   circle(365,80,25)
+
+
+    //rect(240,240,35,35);
+    //rect(325,240,35,35);
+    //line(257.5,240,257.5,275);
+    //line(240,257.5,275,257.5);
+    //line(342.5,240,342.5,275);
+    //line(325,257.5,360,257.5);
+
+    // The window in the attic
+    circle(300,150,40)
+
+    // The chimney smoke
+    circle(390,65,20)
+
+
+
+}
+    
+function draw_window(x, y, size) {
+    rect(x, y, size, size);
+    line(x + size/2, y, x + size/2, y + size);
+    line(x, y + size/2, x + size, y + size/2);
+}
+
+
+
+
+</script>

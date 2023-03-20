@@ -1,0 +1,80 @@
+<script src="lib/p5.min.js"></script>
+<script src="lib/turtlegfx.js"></script>
+
+<script>
+
+function setup() {
+
+    let colors = [ "Blue", "Purple", "Red", "Pink", "Orange", "Brown", "Beige", "Yellow", "Green" ];
+
+    createCanvas(800, 800);
+
+    for(let i = 0; i < 100; i++) {
+        // This makes a random number between 0 and 700 for x
+        let x = Math.floor(Math.random() * 700);
+        let y = Math.floor(Math.random() * 700);
+        let size = Math.floor(Math.random() * 100);
+        //xbox(x,y,size) 
+        let colorindex = Math.floor(Math.random() * colors.length);
+        fillbox(x,y,size, colors[colorindex] );   
+    }
+
+}   
+
+function fillbox(x, y, size, color) {
+
+    setheading(90);
+    pencolor(color);
+
+    for(let i = 0; i < size; i++) {
+
+        setposition(x, y + i);
+        forward(size);
+
+    }
+
+    pencolor("Black");
+    setposition(x, y);
+    setheading(180);
+    forward(size);
+    left(90);
+    forward(size);
+    left(90);
+    forward(size);
+    left(90);
+    forward(size);
+    
+    
+
+
+
+
+
+
+}   
+
+
+function xbox (x, y, length) {
+
+    setposition(x, y);
+    setheading(180);
+    pendown();
+    forward(length);
+    left(90);
+    forward(length);
+    left(90);
+    forward(length);
+    left(90);
+    forward(length);
+    left(135);
+    forward(Math.SQRT2 * length);
+    left(225);
+    penup();
+    forward(length);
+    pendown();
+    left(225);
+    forward(Math.SQRT2 * length);
+
+}
+
+</script>

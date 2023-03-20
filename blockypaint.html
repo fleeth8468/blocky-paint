@@ -1,0 +1,113 @@
+<script src="lib/p5.min.js"></script>
+
+<script>
+
+
+const blockSize = 25;
+const hLines = 30;
+const vLines = 30;
+
+let hSize = hLines * blockSize;
+let vSize = vLines * blockSize;
+
+const canvasBorderSize = 200;
+let fillColor = 'black';
+const backgroundColor = 'white';
+const pallet = [ 'red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black', 'white' ];
+let buttons = [];
+
+function setup() {
+
+    // This disables the context menu when you right-click
+    for (let element of document.getElementsByClassName("p5Canvas")) {
+        element.addEventListener("contextmenu", (e) => e.preventDefault());
+    }
+    
+    // Draws the background a specified color
+    createCanvas(hSize + canvasBorderSize, vSize);
+    fill(backgroundColor);
+    rect(0, 0, hSize, vSize);
+    
+    // Draws the grid lines
+    fill(fillColor);
+    for (let i = 0; i <= hLines; i++) {
+        line(i * blockSize, 0, i * blockSize, vSize);
+    }
+
+    for(let h = 0; h <= vLines; h++) {
+        line(0, h * blockSize, hSize, h * blockSize);
+    }
+
+    buttons = createButtons();
+
+
+}
+
+function draw() {
+    if (mouseIsPressed) {
+
+        for(let i=0; i<buttons.length; i++) {
+            if(buttons[i].mouseover(mouseX, mouseY)) {
+                fillColor = buttons[i].color;
+            }
+        }
+
+        if (mouseButton === LEFT) {
+            if ((mouseX < hSize) && (mouseY < vSize)) {
+                fill(fillColor);
+
+                let x = Math.floor(mouseX / blockSize);
+                let y = Math.floor(mouseY / blockSize);
+
+                rect(x * blockSize, y * blockSize, blockSize);
+            }
+        } else {
+            if ((mouseX < hSize) && (mouseY < vSize)) { 
+                fill(backgroundColor);
+
+                let x = Math.floor(mouseX / blockSize);
+                let y = Math.floor(mouseY / blockSize);
+
+                rect(x * blockSize, y * blockSize, blockSize);
+            }
+        }
+
+
+    } 
+}
+
+function createButtons() {
+
+    let buttons = [];
+   
+    for (let i = 0; i < pallet.length; i++) {
+
+        let button = {
+            x: hSize + 50,
+            y: 50 + i * 25,
+            h: 25,
+            w: 25,
+            color: pallet[i],
+            mouseover: function(mouseX, mouseY) {
+                if ( (mouseX >= button.x) 
+                  && (mouseX <= button.x + button.w) 
+                  && (mouseY >= button.y) 
+                  && (mouseY <= button.y + button.h)) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        fill(button.color);
+        rect(button.x,button.y,button.w,button.h);
+
+        buttons.push(button);
+
+    }
+
+    return buttons;
+
+}
+
+</script>
